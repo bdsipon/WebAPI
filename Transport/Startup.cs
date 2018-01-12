@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Transport.Persistance;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Transport
 {
@@ -23,6 +26,9 @@ namespace Transport
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAutoMapper();
+            services.AddDbContext<TransportContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc();
         }
 
