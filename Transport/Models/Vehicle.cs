@@ -26,11 +26,11 @@ namespace Transport.Models
 
         public DateTime LastUpdate { get; set; }
 
-        public ICollection<VehicleFeature> VFeatures { get; set; }
+        public ICollection<VehicleFeature> Features { get; set; }
 
         public Vehicle()
         {
-            VFeatures = new Collection<VehicleFeature>();
+            Features = new Collection<VehicleFeature>();
         }
 
 

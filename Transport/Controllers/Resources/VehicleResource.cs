@@ -9,16 +9,16 @@ namespace Transport.Controllers.Resources
     public class VehicleResource
     {
         public int Id { get; set; }
-
-        public int ModelId { get; set; }
+        public KeyValuePairResource Model { get; set; }
+        public KeyValuePairResource Make { get; set; }
         public bool IsRegistered { get; set; }
-        public ContactResource  Contact { get; set; }
-   
-        public ICollection<int> VFeatures { get; set; }
+        public ContactResource Contact { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public ICollection<KeyValuePairResource> Features { get; set; }
 
         public VehicleResource()
         {
-            VFeatures = new Collection<int>();
+            Features = new Collection<KeyValuePairResource>();
         }
     }
 }
