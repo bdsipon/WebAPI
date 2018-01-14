@@ -24,10 +24,34 @@ namespace Transport.Controllers
             this.mapper = mapper;
         }
         [HttpPost]
-        public IActionResult CreateVehicle([FromBody]VehicleResource vehicleResource)
+        public async Task< IActionResult> CreateVehicle([FromBody]VehicleResource vehicleResource)
         {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var vehicle = mapper.Map<VehicleResource, Vehicle>(vehicleResource);
-            return Ok(vehicle);
+            vehicle.LastUpdate = DateTime.Now;
+
+            context.Vehicles.Add(vehicle);
+            await context.SaveChangesAsync();
+
+         var result=   mapper.Map<Vehicle, VehicleResource>(vehicle);
+            return Ok(result);
+        }
+        [HttpPost("{Id}")]
+        public async Task<IActionResult> UpdateVehicle( int id,[FromBody]VehicleResource vehicleResource)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var vehicle = mapper.Map<VehicleResource, Vehicle>(vehicleResource);
+            vehicle.LastUpdate = DateTime.Now;
+
+            context.Vehicles.Add(vehicle);
+            await context.SaveChangesAsync();
+
+            var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
+            return Ok(result);
         }
     }
 }

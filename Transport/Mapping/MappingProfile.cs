@@ -16,6 +16,9 @@ namespace Transport.Mapping
             CreateMap<Make, MakeResource>();
             CreateMap<Model, ModelResource>();
             CreateMap<Feature, FeatureResource>();
+            CreateMap<Vehicle, VehicleResource>()
+                .ForMember(vr => vr.Contact, opt => opt.MapFrom(v => new ContactResource { Name = v.ContactName, Email = v.ContactEmail, Phone = v.ContactPhone }))
+                .ForMember(vr => vr.VFeatures, opt => opt.MapFrom(v => v.VFeatures.Select(vf => vf.FeatureId)));
 
             //API Resorce to Domain
 
