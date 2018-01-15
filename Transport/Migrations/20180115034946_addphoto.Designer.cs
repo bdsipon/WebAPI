@@ -11,9 +11,10 @@ using Transport.Persistance;
 namespace Transport.Migrations
 {
     [DbContext(typeof(TransportContext))]
-    partial class TransportContextModelSnapshot : ModelSnapshot
+    [Migration("20180115034946_addphoto")]
+    partial class addphoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
