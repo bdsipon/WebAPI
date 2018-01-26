@@ -29,9 +29,9 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
-  
         public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
         {
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -49,7 +49,6 @@ namespace Transport.Controllers
         }
 
         [HttpPut("{id}")]
-       
         public async Task<IActionResult> UpdateVehicle(int id, [FromBody] SaveVehicleResource vehicleResource)
         {
             if (!ModelState.IsValid)
@@ -72,7 +71,6 @@ namespace Transport.Controllers
         }
 
         [HttpDelete("{id}")]
-       
         public async Task<IActionResult> DeleteVehicle(int id)
         {
             var vehicle = await repository.GetVehicle(id, includeRelated: false);
@@ -98,7 +96,6 @@ namespace Transport.Controllers
 
             return Ok(vehicleResource);
         }
-
 
     }
 }

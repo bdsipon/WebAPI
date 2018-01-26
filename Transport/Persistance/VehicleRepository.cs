@@ -28,13 +28,15 @@ namespace Transport.Persistance
                 .ThenInclude(m => m.Make)
               .SingleOrDefaultAsync(v => v.Id == id);
         }
+
         public void Add(Vehicle vehicle)
         {
             context.Vehicles.Add(vehicle);
         }
-        public void Remove(Vehicle Vehicle)
+
+        public void Remove(Vehicle vehicle)
         {
-            context.Remove(Vehicle);
+            context.Remove(vehicle);
         }
     }
 }
